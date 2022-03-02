@@ -2,6 +2,7 @@ const router = require('express').Router()
 const User = require('../users/users-model')
 const bcrypt = require('bcryptjs')
 const makeToken = require('./auth-token-builder')
+const { checkToken } = require('./auth-middleware')
 
 router.get('/users', async (req, res, next) => {
   try {
@@ -35,7 +36,7 @@ router.post('/login', async (req, res, next) => {
   }
 })
 
-router.put('/update/password', async (req, res, next) => {
+router.put('/update/password', checkToken, async (req, res, next) => {
     let { user, newPassword } = req.body
     try {
       User.update(user, newPassword)
@@ -44,7 +45,7 @@ router.put('/update/password', async (req, res, next) => {
     }
 })
 
-router.put('/update/username', async (req, res, next) => {
+router.put('/update/username', checkToken, async (req, res, next) => {
     let { user, newUsername } = req.body
     try {
       User.update(user, newUsername)
