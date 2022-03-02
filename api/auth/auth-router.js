@@ -13,9 +13,9 @@ router.get('/users', async (req, res, next) => {
 })
 
 router.post('/register', (req, res, next) => {
-  let { username, password, role } = req.body
+  let { username, password, phoneNumber } = req.body
   const hash = bcrypt.hashSync(password, 8)
-  User.add({ username, password: hash, role })
+  User.add({ username, password: hash, phoneNumber })
       .then(newUser => { 
           res.status(201).json(newUser)
       })
@@ -33,6 +33,24 @@ router.post('/login', async (req, res, next) => {
   } catch(err){
     next(err)
   }
+})
+
+router.put('/update/password', async (req, res, next) => {
+    let { user, newPassword } = req.body
+    try {
+      User.update(user, newPassword)
+    } catch(err){
+      next(err)
+    }
+})
+
+router.put('/update/username', async (req, res, next) => {
+    let { user, newUsername } = req.body
+    try {
+      User.update(user, newUsername)
+    } catch(err){
+      next(err)
+    }
 })
 
 module.exports = router
