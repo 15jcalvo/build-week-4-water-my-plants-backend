@@ -13,8 +13,17 @@ function add(newPlant) {
     .insert(newPlant, ['nickname', 'id', 'species', 'h2oFrequency'])
 }
 
+function update(plant) {
+    return db('plants')
+    .where('nickname', plant.nickname)
+    .update('nickname', plant.newNickname)
+    .update('species', plant.species)
+    .update('h2oFrequency', plant.h2oFrequency)
+}
+
 module.exports = {
     findBy,
     add,
     find,
+    update,
 }

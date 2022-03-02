@@ -17,6 +17,15 @@ router.post('/add', (req, res, next) => {
             res.status(201).json(newPlant)
         })
         .catch(next)
-  })
+})
+
+router.put('/add', (req, res, next) => {
+    let { nickname, newNickname, species, h2oFrequency } = req.body
+    Plant.update({ nickname, newNickname, species, h2oFrequency })
+        .then(updatedPlant => { 
+            res.status(201).json(updatedPlant)
+        })
+        .catch(next)
+})
 
 module.exports = router

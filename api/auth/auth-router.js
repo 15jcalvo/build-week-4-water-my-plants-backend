@@ -39,7 +39,7 @@ router.post('/login', async (req, res, next) => {
 router.put('/update/password', checkToken, async (req, res, next) => {
     let { user, newPassword } = req.body
     try {
-      User.update(user, newPassword)
+      User.updatePassword(user, newPassword)
     } catch(err){
       next(err)
     }
@@ -48,7 +48,7 @@ router.put('/update/password', checkToken, async (req, res, next) => {
 router.put('/update/username', checkToken, async (req, res, next) => {
     let { user, newUsername } = req.body
     try {
-      User.update(user, newUsername)
+      User.updateUsername(user, newUsername)
     } catch(err){
       next(err)
     }
