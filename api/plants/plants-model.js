@@ -20,10 +20,15 @@ function update(plant) {
     .update('species', plant.species)
     .update('h2oFrequency', plant.h2oFrequency)
 }
-
+function deletePlant(plant) {
+    return db('plants')
+    .where('nickname', plant.nickname)
+    .del()
+}
 module.exports = {
     findBy,
     add,
     find,
     update,
+    deletePlant,
 }

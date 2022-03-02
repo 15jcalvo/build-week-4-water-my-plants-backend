@@ -28,4 +28,13 @@ router.put('/add', (req, res, next) => {
         .catch(next)
 })
 
+router.put('/add', (req, res, next) => {
+    let { nickname } = req.body
+    Plant.deletePlant({ nickname })
+        .then(deletedPlant => { 
+            res.status(201).json(deletedPlant)
+        })
+        .catch(next)
+})
+
 module.exports = router
