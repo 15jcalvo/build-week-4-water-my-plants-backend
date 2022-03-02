@@ -1,6 +1,5 @@
 const checkToken = (req, res, next) => {
-    const token = localStorage.getItem('token')
-    if (!token) {
+    if (!req.token) {
         next({ status: 401, message: 'not logged in'})
     } else {
         next()
