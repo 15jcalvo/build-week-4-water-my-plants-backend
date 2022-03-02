@@ -10,4 +10,13 @@ router.get('/', async (req, res, next) => {
     }
 })
 
+router.post('/add', (req, res, next) => {
+    let { nickname, species, h2oFrequency } = req.body
+    Plant.add({ nickname, species, h2oFrequency })
+        .then(newPlant => { 
+            res.status(201).json(newPlant)
+        })
+        .catch(next)
+  })
+
 module.exports = router

@@ -8,9 +8,9 @@ function findBy(filter) {
     return db('plants').where(filter)
 }
 
-function add(newUser) {
+function add(newPlant) {
     return db('plants')
-    .insert(newUser, ['username', 'user_id', 'password', 'phoneNumber'])
+    .insert(newPlant, ['nickname', 'id', 'species', 'h2oFrequency'])
 }
 
 module.exports = {
